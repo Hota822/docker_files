@@ -1,0 +1,48 @@
+version: '3'
+services:
+  #======================================================================  django  ======  
+  django:
+    restart: always
+    build:
+      context: ./django
+    command: uwsgi --socket :8001 --module app.wsgi --py-autoreload 1 --logto /tmp/mylog.log
+    # command: python manage.py runserver 0.0.0.0:8088
+    # container_name: 'django'
+    # working_dir: '/root/'
+    # tty: true
+    expose:
+      - "8001"
+    volumes:
+      - ./code:/opt/code
+    depends_on:
+      - mysql
+  #======================================================================  nginx  ======
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      # - ./nginx/log:/var/log/nginx
+      # - ./nginx/conf:/etc/nginx/conf.d
+      # - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./static:/static
+    depends_on:
+      - django
+  #======================================================================  mysql  ======
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+     - 3306:3306
+    volumes:
+       - ./db:/var/lib/mysql
+       - ./mysql/init:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=django_base
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+    hostname: db

@@ -1,0 +1,11 @@
+Django==3.0.7
+mysqlclient==1.4.6
+uwsgi==2.0.18
+psycopg2
+numpy
+pandas
+matplotlib
+networkx
+pyyaml
+xlsxwriter
+tornado
