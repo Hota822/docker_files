@@ -1,0 +1,25 @@
+FROM python:3.8
+USER root
+
+RUN apt-get update \
+    && apt-get -y install locales \ 
+    && localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 \
+    && mkdir /opt/code
+ENV TZ JST-9
+ENV TERM xterm
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /opt/code/
+COPY requirements ./
+RUN apt-get install -y vim less \
+    && pip install --upgrade pip \
+    && pip install --upgrade setuptools \
+    && pip install -r requirements
+
+# RUN django-admin startproject app . 
+    # && rm app/settings.py
+# COPY settings.py ./app
+# RUN python ./manage.py makemigrations \
+    # && python ./manage.py migrate \
+#     && python ./manage.py createsuperuser
+
