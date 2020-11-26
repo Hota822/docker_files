@@ -1,0 +1,5 @@
+/target
+/bot
+rls*
+*.env
+db/*
