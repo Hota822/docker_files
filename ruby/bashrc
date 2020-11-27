@@ -1,0 +1,91 @@
+# bash-------------------------------------------------------------------
+alias ..="cd .."
+alias ...="cd ../.."
+# home=/app/home/directory
+# alias home="cd $home"
+# alias view="cd $home/views"
+# alias mod="cd $home/models"
+# alias cont="cd $home/controllers"
+# alias test="cd $home/test"
+# bash for windows
+# alias tree='cmd //c tree //f'
+
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -al'
+alias l='ls $LS_OPTIONS -lA'
+
+# ターミナルのプロンプトの色、表示の設定
+# PS1='\[\e[32m\]\u@\h:\w\$\[\e[0m\]'
+PS1="\[\e[34m\]\u\[\e[33m\]@docker\[\e[32m\]:\w\$\[\e[0m\]"
+
+# 言語せっていを変更したときに、bashの表示まで日本語にならないようにする設定
+LANG=en_US.utf8
+
+# history コマンドの設定
+# HISTSIZE: 実際の行数ではなく、表示されるHistoryの数
+# コマンドの実行結果（＋日付）を記録する。めんどくさいのでここでいいんじゃない？
+# function以下でログのローテートを実行
+HISTSIZE=1000
+HISTTIMEFORMAT='%m/%d %H:%M '
+PROMPT_COMMAND='history -a'
+function rotate_history() {
+    sufix=$(date +"%F")
+    cp "${HISTFILE}" "${HISTFILE}_${sufix}"
+    sed -i '1,1800d' "${HISTFILE}"
+}
+line_count=$(sed -n "$=" ${HISTFILE})
+if [ $line_count -gt 1800 ] ; then
+    echo 'auto history rotation is started.'
+    rotate_history
+fi
+# docker---------------------------------------------------------------
+alias dc="docker-compose"
+alias d="docker"
+alias dps="docker ps"
+alias dpa="docker ps -a"
+alias dcw="docker-compose exec workspace bash"
+function de() {
+    docker exec -it $1 bash
+}
+function dce() {
+    docker-compose exec $1 bash
+}
+
+# vagrant ---------------------------------------------------------------
+alias vsssh="vagrant ssh"
+alias vup="vagrant up"
+
+# git----------------------------------------------------------------
+alias gis="git status"
+alias ad="git add"
+alias di="git diff"
+
+# mysql----------------------------------------------------------------
+# alias restore="mysql -u [user name] -p [password] -D [database name] < [backup file name]"
+# alias dump="mysqldump -u [user name] [database name] > [backup file name]"
+# alias mydb="mysql -u [user name] [database name]"
+# function dumpwhere() {
+# 	echo 'input table name'
+# 	read tablename
+# 	echo 'input where condition'
+# 	read condition
+#     mysqldump -u [user name] -t [db name] "$tablename" --where "$condition" > where.sql
+# }
+# function dumpwhere() {
+#     mysqldump -u [user name] -t [db name] "$1" --where "$2" > where.sql
+# }
+
+# Laravel--------------------------------------------------------------
+# function art() {
+    # php artisan "$@"
+# }
+
+# rails----------------------------------------------------------------
+# alias rails="bundle exec rails"
+# alias sand="bundle exec rails console --sandbox"
+# alias cop="bundle exec rubocop"
+# alias spec="bundle exec rspec"
+# alias fixtures="bundle exec rails db:migrate:reset && FIXTURES_PATH=spec/fixtures bundle exec rails db:fixtures:load && bundle exec rails db:seed"
+# alias puma='ps aux| grep -e puma -e PID'
