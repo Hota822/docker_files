@@ -12,11 +12,16 @@ services:
         - USER_NAME=${USER_NAME}
         - USER_PASSWORD=${USER_PASSWORD}
     working_dir: /opt/${APP_NAME}
+    # just wake up container
     command: /bin/sh -c "while sleep 1000; do :; done"
+    # new application
     # command: bundle config set path 'vendor/bundle' && bundle install && yarn install --check-files
+    # cloned application
+    # command: bundle install && yarn install --check-files
+    # start application server
     # command: bundle exec puma -C config/puma.rb
-    expose:
-      - "8001"
+    # expose:
+      # - "8001"
     volumes:
       - ./${APP_NAME}:/opt/${APP_NAME}
       - web_app_socket:${WEB_APP_SOCKET}
@@ -27,8 +32,8 @@ services:
   nginx:
     build:
       context: ./nginx
-    ports:
-      - 3000:3000
+    # ports:
+      # - 3000:3000
     volumes:
       - ./nginx/log:/var/log/nginx
       - ./nginx/conf:/etc/nginx/conf.d
@@ -44,7 +49,7 @@ services:
     # ports:
       # - 3306:3306
     volumes:
-      # - ./db:/var/lib/mysql
+      # - ./mysql/data:/var/lib/mysql
       - db_data:/var/lib/mysql
       - app_db_socket:/var/run/mysqld
       - ./mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
