@@ -1,0 +1,40 @@
+FROM ruby:2.7
+
+ARG ROOT_PASSWORD
+ARG ENV
+ARG USER_NAME
+ARG USER_PASSWORD
+ARG API_NAME
+
+RUN echo "root:${ROOT_PASSWORD}" |chpasswd
+
+# for development
+RUN groupadd -r ${USER_NAME} && useradd -r -g ${USER_NAME} ${USER_NAME} && \
+    echo "${USER_NAME}:${USER_PASSWORD}" |chpasswd
+WORKDIR /usr/local/src
+COPY development.sh /usr/local/src
+RUN bash ./development.sh
+
+WORKDIR /opt/${API_NAME}
+# COPY Gemfile /opt/${API_NAME}
+RUN chmod 775 -R ./ && chown -R ${USER_NAME}:${USER_NAME} ./
+# RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+#     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+#     && apt-get update \
+#     && apt-get install -y \
+#         nodejs \
+#         yarn \
+#     && apt-get clean \
+#     && rm -rf /var/lib/apt/lists/*
+
+# USER ${USER_NAME}
+# RUN bundle config set path 'vendor/bundle'
+# RUN bundle exec rails new . --api --skip-gemfile --skip-bundle
+
+WORKDIR /opt/temp
+COPY Gemfile /opt/temp
+RUN bundle config set path 'vendor/bundle'
+# RUN bundle install
+
+
+

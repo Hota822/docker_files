@@ -1,0 +1,5 @@
+-- CREATE DATABASE
+GRANT ALL PRIVILEGES ON new_database.* TO 'user'@'%';
+
+FLUSH PRIVILEGES;
+

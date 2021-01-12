@@ -1,0 +1,166 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+
+ruby '2.7.2'
+
+### Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
+### Use sqlite3 as the database for Active Record
+# gem 'sqlite3', '~> 1.4'
+### Use default database as mysql
+gem 'mysql2'
+### Use Puma as the app server
+gem 'puma', '~> 4.1'
+### Use SCSS for stylesheets
+gem 'sass-rails', '>= 6'
+### Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 4.0'
+### Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+### Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.7'
+### Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+
+### Easily add authentication
+gem 'devise'
+### Easily add authorization
+# gem 'cancancan'
+
+### Usable memory usage value in ruby
+# gem 'get_process_mem'
+### Usable system infromation in ruby
+# gem 'sys-filesystem'
+### Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+### Easily add encprypted column, and decrypt
+# gem 'attr_encrypted', '~> 3.0.0'
+### Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
+### Easily create search function
+# gem 'ransack'
+### To controll job queue
+# gem 'sidekiq'
+### Cron settings by ruby
+# gem 'whenever'
+### Usable seed sometimes or change registered content by environment in default
+# gem 'seed-fu', '~> 2.3'
+### bulk insert
+# gem 'activerecord-import'
+### N + 1 query measures
+# gem 'bullet'
+
+### Constants management gem. for middle size project
+# gem 'settingslogic'
+### Constants management gem. for big size project
+# gem 'config'
+
+### Autolink url in text
+# gem 'rinku'
+### Use haml as default template engine or convert from erb
+# gem 'haml-rails'
+### Enable jquery
+# gem 'jquery-rails'
+### Easily add relational form. Require jquery?
+# gem "cocoon"
+### Add pagination
+# gem 'kaminari'
+### Add breadcrumbs
+# gem "gretel"
+
+### translate code to prefecture name or etc based on JIS X 0402
+# gem 'jp_prefecture'
+### Usable financial year
+# gem 'fiscali'
+
+### Use to resize image.Big size gem. Based on imagemagick
+# gem 'rmagick'
+### Use to resize image.Small size gem. Based on imagemagick
+# gem 'minimagick'
+### Create a pdf file
+# gem 'prawn'
+### Create zip a file
+# gem 'rubyzip'
+### json
+# gem 'oj'
+### json
+# gem 'multi_json'
+
+### File uploader gem.
+# gem 'carrierwave'
+### For thumbnail of video
+# gem 'carrierwave-video-thumbnailer'
+### Upload for s3
+# gem 'fog-aws'
+
+### Log silencer
+# gem 'silencer'
+### To avoid excessive memory using
+# gem 'puma_worker_killer'
+### health check
+# gem 'health_check'
+### When exception raised, send notification to variable targets
+# gem 'exception_notification'
+
+### Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
+
+group :development, :test do
+  ### Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  ### Usable binding.pry, successor of byebyg
+  # gem 'pry-rails'
+  ### Viewable builtin ruby method written by C
+  # gem 'pry-doc'
+  ### Create dummy data.Multilingual.
+  # gem 'faker'
+  ### Create dummy data. Addable furigana.
+  # gem 'gimei'
+  ### Create dummy sentences or words in Japanese(cited from 徒然草)
+  # gem 'yoshida'
+  ### Rspec gem
+  # gem 'rspec-rails'
+  ### Syntax check
+  gem 'rubocop', require: false
+  ### Check security incident
+  gem 'brakeman', require: false
+  ### Creat coverage report
+  # gem 'simplecov', require: false
+  ### Metrics check
+  gem 'metric_fu', git: 'https://github.com/metricfu/metric_fu.git'
+  ### Guard gems
+  # gem 'guard-rails'
+  # gem 'guard-rspec'
+  # gem 'guard-rubocop'
+  # gem 'guard-spring'
+end
+
+group :development do
+  ### Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  ### Watch file changing and send hook
+  gem 'listen', '~> 3.2'
+  ### Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  ### Easy view in errors
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
+  ### Write column information to model or route information to routes.rb
+  gem 'annotate'
+end
+
+group :test do
+  ### Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  ### Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
+  # Time travel
+#   gem 'timecop'
+end
+
+### Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
