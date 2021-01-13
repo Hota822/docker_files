@@ -16,6 +16,8 @@ services:
     command: /bin/sh -c "while sleep 1000; do :; done"
     # new application
     # command: bundle config set path 'vendor/bundle' && bundle install && yarn install --check-files
+    # or use
+    # command: /bin/sh -c "bundle config set path 'vendor/bundle' && bundle install && yarn install --check-files"
     # cloned application
     # command: bundle install && yarn install --check-files
     # start application server

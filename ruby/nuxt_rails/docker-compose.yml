@@ -18,9 +18,10 @@ services:
         - USER_PASSWORD=${USER_PASSWORD}
     working_dir: /opt/${API_NAME}
     # just wake up container
-    command: /bin/sh -c "while sleep 1000; do :; done"
+    user: ${USER_NAME}
+    # command: /bin/sh -c "while sleep 1000; do :; done"
     # new application or cloned application
-    # command: bundle install
+    command: /bin/sh -c "bundle config set path 'vendor/bundle'; bundle install"
     # start application server
     # command: bundle exec puma -C config/puma.rb
     # expose:

@@ -27,14 +27,9 @@ RUN chmod 775 -R ./ && chown -R ${USER_NAME}:${USER_NAME} ./
 #     && apt-get clean \
 #     && rm -rf /var/lib/apt/lists/*
 
-# USER ${USER_NAME}
-# RUN bundle config set path 'vendor/bundle'
-# RUN bundle exec rails new . --api --skip-gemfile --skip-bundle
+USER ${USER_NAME}
 
-WORKDIR /opt/temp
-COPY Gemfile /opt/temp
-RUN bundle config set path 'vendor/bundle'
-# RUN bundle install
+# RUN bundle exec rails new . --api --skip-gemfile --skip-bundle
 
 
 

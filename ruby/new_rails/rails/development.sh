@@ -12,7 +12,6 @@ if [ "$ENV" = 'development' ]; then
   chmod 777 /home/"$USER"
   echo 'set completion-ignore-case on' > /home/"$USER"/.inputrc
   echo 'PS1="\[\e[34m\]\u\[\e[33m\]@docker\[\e[32m\]:\w\$\[\e[0m\]"' >> /home/"$USER"/.bashrc
-  echo 'alias jupyter="jupyter notebook --ip 0.0.0.0 --port 8888"' >> /home/"$USER"/.bashrc
   echo '=================================='
   echo 'Development tools are installed'
   echo '=================================='
