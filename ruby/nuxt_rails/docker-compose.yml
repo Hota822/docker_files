@@ -4,7 +4,20 @@ services:
   nuxt:
     build:
       context: ./nuxt
-
+      args:
+        - ENV=${ENV}
+        - FRONT_NAME=${FRONT_NAME}
+        - ROOT_PASSWORD=${ROOT_PASSWORD}
+        - USER_NAME=${USER_NAME}
+        - USER_PASSWORD=${USER_PASSWORD}
+    command:
+      /bin/sh -c "while sleep 1000; do :; done"
+      # "npm run start"
+      # "nmp run dev"
+    volumes:
+      - ./${FRONT_NAME}:/opt/${FRONT_NAME}
+    ports:
+      - 8000:8000
   #======================================================================  api server  ======
   rails:
     # restart: always
